@@ -11,22 +11,41 @@
         integrity="sha384-P9DABSdtEY/XDbEInD3q+PlL+BjqPCXGcF8EkhtKSfSTr/dS5PBKa9+/PMkW2xsY" crossorigin="anonymous" />
         <link rel="stylesheet" href="leaflet.mouseCoordinate-master/leaflet.mouseCoordinate-master/dist/leaflet.mousecoordinate.css">
     <style>
-        html,
         body {
-            width: 100%;
-            height: 100%;
-            margin: 0;
-        }
+        margin: 0;
+        background-color: #ffc0cb; /* background pink */
+        font-family: Arial, sans-serif;
+    }
 
-        #map {
-            width: 100%;
-            height: 100vh;
-        }
+    .container {
+        margin: 15px;
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        overflow: hidden;
+    }
+
+    .header {
+        background: #ff99b6; /* pink header */
+        color: white;
+        text-align: center;
+        padding: 12px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    #map {
+        width: 100%;
+        height: calc(100vh - 60px); /* otomatis sesuaikan tinggi minus header */
+    }
     </style>
 </head>
 
 <body>
-    <div id="map"></div>
+    <div class="container">
+        <div class="header">🌸 Interactive WebGIS with LeafletJS 🌸</div>
+        <div id="map"></div>
+    </div>
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
     <script src="https://cdn.jsdelivr.net/gh/gokertanrisever/leaflet-ruler@master/src/leaflet-ruler.js"
@@ -79,11 +98,11 @@
         circle.addTo(map);
 
         // Popup
-        circle.bindPopup("<b>Hallo</b><br>Ini adalah popup circle");
+        circle.bindPopup("<b>Hi</b><br>This is a circle popup");
         circle.openPopup();
 
         // Tooltip
-        circle.bindTooltip("Ini adalah tooltip circle", {
+        circle.bindTooltip("This is a circle tooltip", {
             sticky: true,
         });
         circle.openTooltip();
@@ -105,11 +124,11 @@
         polyline.addTo(map);
 
         // Popup
-        polyline.bindPopup("<b>Hallo</b><br>Ini adalah popup polyline");
+        polyline.bindPopup("<b>Hi</b><br>This is a polyline popup");
         polyline.openPopup();
 
         // Tooltip
-        polyline.bindTooltip("Ini adalah tooltip polyline", {
+        polyline.bindTooltip("This is a polyline tooltip", {
             sticky: true,
         });
         polyline.openTooltip();
@@ -167,7 +186,7 @@
             var radius = e.accuracy / 2;
 
             // Menampilkan marker pada lokasi 
-            L.marker(e.latlng).addTo(map).bindPopup("Anda berada dalam radius " + radius + " meter dari titik ini").openPopup();
+            L.marker(e.latlng).addTo(map).bindPopup("You are within a radius of " + radius + " meters from this point.").openPopup();
 
             // Menampilkan circle pada lokasi
             L.circle(e.latlng, radius).addTo(map);
